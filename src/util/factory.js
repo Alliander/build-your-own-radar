@@ -67,7 +67,7 @@ function createRadarLocal(data) {
     new GraphingRadar(size, radar).init().plot();
   }
   catch (exception) {
-    console.log(exception);
+    plotErrorMessage(exception);
   }
 };
 

@@ -39,6 +39,7 @@
     "chance": "^1.0.4",
     "d3": "^4.2.6",
     "d3-tip": "^0.7.1",
+    "dsv-loader": "^2.0.0",
     "lodash": "^4.16.2",
     "sanitize-html": "^1.13.0",
     "tabletop": "^1.4.3"

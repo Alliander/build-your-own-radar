@@ -238,12 +238,12 @@ const GoogleSheetInput = function () {
 
             plotLogo(content);
 
-            var bannerText = '<div><h1>Build your own radar</h1><p>Once you\'ve <a href ="https://www.thoughtworks.com/radar/byor">created your Radar</a>, you can use this service' +
-                ' to generate an <br />interactive version of your Technology Radar. Not sure how? <a href ="https://www.thoughtworks.com/radar/how-to-byor">Read this first.</a></p></div>';
+            var bannerText = '<div><h1>Alliander Tech Radar (IT R&D)</h1></div>';
 
             plotBanner(content, bannerText);
 
-            plotForm(content);
+            // plotForm(content); // for Google sheets
+            plotRadars(content);
 
             plotFooter(content);
 
@@ -254,7 +254,7 @@ const GoogleSheetInput = function () {
 };
 
 function set_document_title() {
-    document.title = "Build your own Radar";
+    document.title = "Alliander (IT R&D) Tech Radar";
 }
 
 function plotLoading(content) {
@@ -276,7 +276,8 @@ function plotLoading(content) {
 function plotLogo(content) {
     content.append('div')
         .attr('class', 'input-sheet__logo')
-        .html('<a href="https://www.thoughtworks.com"><img src="/images/tw-logo.png" / ></a>');
+        .html('<a href="https://www.thoughtworks.com"><img src="/images/tw-logo.png" / ></a>&nbsp;&nbsp;&nbsp;&nbsp;' +
+              '<a href="https://www.alliander.com"><img src="/images/alliander-logo.jpg" / ></a>' );
 }
 
 function plotFooter(content) {
@@ -286,13 +287,7 @@ function plotFooter(content) {
         .append('div')
         .attr('class', 'footer-content')
         .append('p')
-        .html('Powered by <a href="https://www.thoughtworks.com"> ThoughtWorks</a>. '
-        + 'By using this service you agree to <a href="https://www.thoughtworks.com/radar/tos">ThoughtWorks\' terms of use</a>. '
-        + 'You also agree to our <a href="https://www.thoughtworks.com/privacy-policy">privacy policy</a>, which describes how we will gather, use and protect any personal data contained in your public Google Sheet. '
-        + 'This software is <a href="https://github.com/thoughtworks/build-your-own-radar">open source</a> and available for download and self-hosting.');
-
-
-
+        .html('Powered by <a href="https://github.com/thoughtworks/build-your-own-radar"> ThoughtWorks byor</a>.<br/>');
 }
 
 function plotBanner(content, text) {
@@ -324,6 +319,17 @@ function plotForm(content) {
         .text('Build my radar');
 
     form.append('p').html("<a href='https://www.thoughtworks.com/radar/how-to-byor'>Need help?</a>");
+}
+
+function plotRadars(content) {
+  content
+    .append('div')
+    .attr('class', 'input-sheet__form')
+    .attr('style', 'text-align: left')
+    .html('<ul>' +
+          '  <li><a href="http://localhost:8080/?localFile=2018thirdquarter">Radar vierde kwartaal 2018</a></li>' +
+          '  <li><a href="http://localhost:8080/?localFile=2018thirdquarter">Radar derde kwartaal 2018</a></li>' +
+          '</ul>');
 }
 
 function plotErrorMessage(exception) {

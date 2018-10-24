@@ -21,7 +21,7 @@ const ExceptionMessages = require('./exceptionMessages');
 
 // adapted from
 // SOURCE: https://github.com/thoughtworks/build-your-own-radar/blob/f0a7da23cc8aecc9c2c9e71c0da50825143285e8/src/util/factory.js
-function createRadarLocal(data) {
+function createRadar(data) {
   try {
     var columnNames = data.columns;
 
@@ -152,33 +152,33 @@ const GoogleSheet = function (sheetReference, sheetName) {
     return self;
 };
 
-const CSVDocument = function (url) {
-    var self = {};
+const CSVDocument = function () {
 
-    self.build = function () {
-        d3.csv(url, createBlips);
-    }
+  var self = {};
 
-    var createBlips = function (data) {
-        try {
-            var columnNames = data['columns'];
-            delete data['columns'];
-            var contentValidator = new ContentValidator(columnNames);
-            contentValidator.verifyContent();
-            contentValidator.verifyHeaders();
-            var blips = _.map(data, new InputSanitizer().sanitize);
-            plotRadar(FileName(url), blips);
-        } catch (exception) {
-            plotErrorMessage(exception);
-        }
-    }
+  self.build = function (data) {
+    createRadar(data);
+  };
 
-    self.init = function () {
-        plotLoading();
-        return self;
-    };
+  self.init = function () {
+    var content = d3.select('body')
+        .append('div')
+        .attr('class', 'loading')
+        .append('div')
+        .attr('class', 'input-sheet');
+
+    set_document_title();
+
+    plotLogo(content);
+
+    var bannerText = '<h1>Building your radar...</h1><p>Your Technology Radar will be available in just a few seconds</p>';
+    plotBanner(content, bannerText);
+    plotFooter(content);
 
     return self;
+  };
+
+  return self;
 };
 
 const QueryParams = function (queryString) {
@@ -213,36 +213,6 @@ const FileName = function (url) {
     return url;
 }
 
-
-const LocalCSVDocument = function () {
-
-  var self = {};
-
-  self.build = function (data) {
-    createRadarLocal(data);
-  };
-
-  self.init = function () {
-    var content = d3.select('body')
-        .append('div')
-        .attr('class', 'loading')
-        .append('div')
-        .attr('class', 'input-sheet');
-
-    set_document_title();
-
-    plotLogo(content);
-
-    var bannerText = '<h1>Building your radar...</h1><p>Your Technology Radar will be available in just a few seconds</p>';
-    plotBanner(content, bannerText);
-    plotFooter(content);
-
-    return self;
-  };
-
-  return self;
-};
-
 const GoogleSheetInput = function () {
     var self = {};
 
@@ -251,8 +221,8 @@ const GoogleSheetInput = function () {
         var queryParams = QueryParams(window.location.search.substring(1));
 
         if (queryParams.localFile) {
-            var sheet = LocalCSVDocument();
-            var data = require("../resources/radars/2018thirdquarter.csv");
+            var sheet = CSVDocument();
+            var data = require("../resources/radars/" + queryParams.localFile + ".csv");
             sheet.init().build(data);
         }
         else if (queryParams.sheetId) {

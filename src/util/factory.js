@@ -23,7 +23,7 @@ const ExceptionMessages = require('./exceptionMessages');
 // SOURCE: https://github.com/thoughtworks/build-your-own-radar/blob/f0a7da23cc8aecc9c2c9e71c0da50825143285e8/src/util/factory.js
 function createRadarLocal(data) {
   try {
-    var columnNames = ['name','ring','quadrant','isNew','description'];
+    var columnNames = data.columns;
 
     var contentValidator = new ContentValidator(columnNames);
     contentValidator.verifyContent();

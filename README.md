@@ -4,7 +4,7 @@ A library that generates an interactive radar, inspired by [thoughtworks.com/rad
 
 ## Changes by Alliander IT R&D
 
-This [Alliander IT R&D](www.alliander.com) version obtains the CSV files from the `src/resources/radars` directory (instead of using public Google sheets). The radars should have the format "<year><quarter>.csv" (e.g., "20184.csv"). The radars are showed in a history on the main page. When a radar is selected it will open that radar from the local CSV.
+This [Alliander IT R&D](www.alliander.com) version obtains the CSV files from the `src/resources/radars` directory (instead of using public Google sheets). The radars are shown in a history on the main page (sorted on reverse alphabet). When a radar is selected it will open that radar from the local CSV.
 
 Also parts of the ThoughtWorks information is removed and Alliander logos are added.
 

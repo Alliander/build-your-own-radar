@@ -222,7 +222,7 @@ const GoogleSheetInput = function () {
 
         if (queryParams.localFile) {
             var sheet = CSVDocument();
-            var data = require("../resources/radars/" + queryParams.localFile + ".csv");
+            var data = require("../resources/radars/" + queryParams.localFile);
             sheet.init().build(data);
         }
         else if (queryParams.sheetId) {
@@ -323,17 +323,25 @@ function plotForm(content) {
     form.append('p').html("<a href='https://www.thoughtworks.com/radar/how-to-byor'>Need help?</a>");
 }
 
+function toDescription(fileName) {
+  // Drop the .csv extension
+  return fileName.substring(0, fileName.length-4);
+}
+
+function toHtml(fileNames) {
+  return ['<ul>'].concat(
+    fileNames.map(name => '<li><a href="http://localhost:8080/?localFile=' + name + '">' + toDescription(name) + '</a></li>'),
+    ['</ul>']
+  ).join('');
+}
+
 function plotRadars(content) {
-  console.log(process.env.RADAR_FILE_NAMES)
+  var radarFileNames = process.env.RADAR_FILE_NAMES;
   content
     .append('div')
     .attr('class', 'input-sheet__form')
     .attr('style', 'text-align: left')
-    .html('<ul>' +
-          '  <li><a href="http://localhost:8080/?localFile=2019quarter 5">2019 - 1e kwartaal</a></li>' +
-          '  <li><a href="http://localhost:8080/?localFile=2018quarter4">Radar vierde kwartaal 2018</a></li>' +
-          '  <li><a href="http://localhost:8080/?localFile=2018quarter3">Radar derde kwartaal 2018</a></li>' +
-          '</ul>');
+    .html(toHtml(radarFileNames));
 }
 
 function plotErrorMessage(exception) {

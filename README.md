@@ -2,9 +2,15 @@
 
 A library that generates an interactive radar, inspired by [thoughtworks.com/radar](http://thoughtworks.com/radar).
 
+## Changes by Alliander IT R&D
+
+This [Alliander IT R&D](www.alliander.com) version obtains the CSV files from the `src/resources/radars` directory (instead of using public Google sheets). The radars should have the format "<year><quarter>.csv" (e.g., "20184.csv"). The radars are showed in a history on the main page. When a radar is selected it will open that radar from the local CSV.
+
+Also parts of the ThoughtWorks information is removed and Alliander logos are added.
+
 ## Demo
 
-You can see this in action at https://radar.thoughtworks.com. If you plug in [this data](https://docs.google.com/spreadsheets/d/1YXkrgV7Y6zShiPeyw4Y5_19QOfu5I6CyH5sGnbkEyiI/) you'll see [this visualization](https://radar.thoughtworks.com/?sheetId=1YXkrgV7Y6zShiPeyw4Y5_19QOfu5I6CyH5sGnbkEyiI). 
+You can see this in action at https://radar.thoughtworks.com. If you plug in [this data](https://docs.google.com/spreadsheets/d/1YXkrgV7Y6zShiPeyw4Y5_19QOfu5I6CyH5sGnbkEyiI/) you'll see [this visualization](https://radar.thoughtworks.com/?sheetId=1YXkrgV7Y6zShiPeyw4Y5_19QOfu5I6CyH5sGnbkEyiI).
 
 ## How To Use
 
@@ -27,7 +33,7 @@ Create a Google Sheet. Give it at least the below column headers, and put in the
 
 * In Google sheets, go to 'File', choose 'Publish to the web...' and then click 'Publish'.
 * Close the 'Publish to the web' dialog.
-* Copy the URL of your editable sheet from the browser (Don't worry, this does not share the editable version). 
+* Copy the URL of your editable sheet from the browser (Don't worry, this does not share the editable version).
 
 The URL will be similar to [https://docs.google.com/spreadsheets/d/1waDG0_W3-yNiAaUfxcZhTKvl7AUCgXwQw8mdPjCz86U/edit](https://docs.google.com/spreadsheets/d/1waDG0_W3-yNiAaUfxcZhTKvl7AUCgXwQw8mdPjCz86U/edit). In theory we are only interested in the part between '/d/' and '/edit' but you can use the whole URL if you want.
 
@@ -37,11 +43,11 @@ You can enter any URL that responds CSV data into the input field on the first p
 The format is just the same as that of the Google Sheet, the example is as follows:
 
 ```
-name,ring,quadrant,isNew,description  
-Composer,adopt,tools,TRUE,"Although the idea of dependency management ..."  
-Canary builds,trial,techniques,FALSE,"Many projects have external code dependencies ..."  
-Apache Kylin,assess,platforms,TRUE,"Apache Kylin is an open source analytics solution ..."  
-JSF,hold,languages & frameworks,FALSE,"We continue to see teams run into trouble using JSF ..."  
+name,ring,quadrant,isNew,description
+Composer,adopt,tools,TRUE,"Although the idea of dependency management ..."
+Canary builds,trial,techniques,FALSE,"Many projects have external code dependencies ..."
+Apache Kylin,assess,platforms,TRUE,"Apache Kylin is an open source analytics solution ..."
+JSF,hold,languages & frameworks,FALSE,"We continue to see teams run into trouble using JSF ..."
 ```
 
 Note: The CSV file parsing is using D3 library, so consult the D3 documentation for the data format details.
@@ -75,7 +81,7 @@ $ open http://localhost:8080
 
 All tasks are defined in `package.json`.
 
-Pull requests are welcome; please write tests whenever possible. 
+Pull requests are welcome; please write tests whenever possible.
 Make sure you have nodejs installed.
 
 - `git clone git@github.com:thoughtworks/build-your-own-radar.git`

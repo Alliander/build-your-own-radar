@@ -299,7 +299,7 @@ const Radar = function (size, radar) {
   function createHomeLink(pageElement) {
     if (pageElement.select('.home-link').empty()) {
       pageElement.append('div')
-        .html('&#171; Back to Radar home')
+        .html('&#171; Terug naar volledige Radar')
         .classed('home-link', true)
         .classed('selected', true)
         .on('click', redrawFullRadar)
@@ -317,8 +317,8 @@ const Radar = function (size, radar) {
   function drawLegend(order) {
     removeRadarLegend();
 
-    var triangleKey = "New or moved";
-    var circleKey = "No change";
+    var triangleKey = "Nieuw of verplaatst";
+    var circleKey = "Geen verandering";
 
     var container = d3.select('svg').append('g')
       .attr('class', 'legend legend'+"-"+order);
@@ -441,7 +441,7 @@ const Radar = function (size, radar) {
 
     header.append('div')
       .classed('print-radar button no-capitalize', true)
-      .text('Print this radar')
+      .text('Print deze radar')
       .on('click', window.print.bind(window));
   }
 
@@ -452,10 +452,7 @@ const Radar = function (size, radar) {
       .append('div')
       .attr('class', 'footer-content')
       .append('p')
-      .html('Powered by <a href="https://www.thoughtworks.com"> ThoughtWorks</a>. '
-      + 'By using this service you agree to <a href="https://www.thoughtworks.com/radar/tos">ThoughtWorks\' terms of use</a>. '
-      + 'You also agree to our <a href="https://www.thoughtworks.com/privacy-policy">privacy policy</a>, which describes how we will gather, use and protect any personal data contained in your public Google Sheet. '
-      + 'This software is <a href="https://github.com/thoughtworks/build-your-own-radar">open source</a> and available for download and self-hosting.');
+      .html('Bekrachtigd door <a href="https://github.com/thoughtworks/build-your-own-radar">ThoughtWorks</a>');
   }
 
   function mouseoverQuadrant(order) {

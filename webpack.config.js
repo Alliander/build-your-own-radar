@@ -18,7 +18,9 @@ let common = ['./src/common.js'];
 let devtool;
 
 function getFileNames(path) {
-  return fs.readdirSync(path);
+  return fs.readdirSync(path)
+    .sort()
+    .reverse();
 }
 
 if (isDev) {

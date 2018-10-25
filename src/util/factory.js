@@ -327,8 +327,8 @@ function plotRadars(content) {
     .attr('class', 'input-sheet__form')
     .attr('style', 'text-align: left')
     .html('<ul>' +
-          '  <li><a href="http://localhost:8080/?localFile=2018thirdquarter">Radar vierde kwartaal 2018</a></li>' +
-          '  <li><a href="http://localhost:8080/?localFile=2018thirdquarter">Radar derde kwartaal 2018</a></li>' +
+          '  <li><a href="http://localhost:8080/?localFile=2018quarter4">Radar vierde kwartaal 2018</a></li>' +
+          '  <li><a href="http://localhost:8080/?localFile=2018quarter3">Radar derde kwartaal 2018</a></li>' +
           '</ul>');
 }
 

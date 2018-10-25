@@ -8,12 +8,18 @@ const args = require('yargs').argv;
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+const fs = require('fs');
+
 let isProd = args.prod;
 let isDev = args.dev;
 
 let main = ['./src/site.js'];
 let common = ['./src/common.js'];
 let devtool;
+
+function getFileNames(path) {
+  return fs.readdirSync(path);
+}
 
 if (isDev) {
     main.push('webpack-dev-server/client?http://0.0.0.0:8080');
@@ -32,6 +38,12 @@ let plugins = [
         chunks: ['common'],
         inject: 'body',
         filename: 'error.html'
+    }),
+    // Export some environment variables to client side JavaScript
+    new webpack.DefinePlugin({
+      'process.env': {
+        RADAR_FILE_NAMES: JSON.stringify(getFileNames('src/resources/radars/'))
+      },
     })
 ];
 

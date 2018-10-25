@@ -322,11 +322,13 @@ function plotForm(content) {
 }
 
 function plotRadars(content) {
+  console.log(process.env.RADAR_FILE_NAMES)
   content
     .append('div')
     .attr('class', 'input-sheet__form')
     .attr('style', 'text-align: left')
     .html('<ul>' +
+          '  <li><a href="http://localhost:8080/?localFile=2019quarter 5">2019 - 1e kwartaal</a></li>' +
           '  <li><a href="http://localhost:8080/?localFile=2018quarter4">Radar vierde kwartaal 2018</a></li>' +
           '  <li><a href="http://localhost:8080/?localFile=2018quarter3">Radar derde kwartaal 2018</a></li>' +
           '</ul>');

@@ -330,7 +330,9 @@ function toDescription(fileName) {
 
 function toHtml(fileNames) {
   return ['<ul>'].concat(
-    fileNames.map(name => '<li><a href="http://localhost:8080/?localFile=' + name + '">' + toDescription(name) + '</a></li>'),
+    fileNames.map(function(name) {
+      return '<li><a href="' + window.location.href + '/?localFile=' + name + '">' + toDescription(name) + '</a></li>';
+    }),
     ['</ul>']
   ).join('');
 }

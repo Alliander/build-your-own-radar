@@ -335,7 +335,7 @@ function containsQueryString(url) {
 function toHtml(fileNames) {
   return ['<ul>'].concat(
     fileNames.map(function(name) {
-      let url = window.location.href;
+      var url = window.location.href;
       return '<li>'
         +'  <a href="'
         +   url

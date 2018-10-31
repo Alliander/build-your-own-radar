@@ -328,10 +328,22 @@ function toDescription(fileName) {
   return fileName.substring(0, fileName.length-4);
 }
 
+function containsQueryString(url) {
+  return /\?/.test(url);
+}
+
 function toHtml(fileNames) {
   return ['<ul>'].concat(
     fileNames.map(function(name) {
-      return '<li><a href="' + window.location.href + '/?localFile=' + name + '">' + toDescription(name) + '</a></li>';
+      let url = window.location.href;
+      return '<li>'
+        +'  <a href="'
+        +   url
+        +   (containsQueryString(url) ? '&' : '?')
+        +   'localFile=' + name + '">'
+        +   toDescription(name)
+        +   '</a>'
+        + '</li>';
     }),
     ['</ul>']
   ).join('');
